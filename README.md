@@ -48,7 +48,9 @@ You'll land on a pre-registered requesting app that needs a couple of updates. C
 | Redirect URIs | `http://localhost:3000/auth/callback` |
 | Post-Logout Redirect URIs | `http://localhost:3000` |
 
-Click **Save changes**. The site will then display four values:
+Under **Resource Connections**, use **Add Resource** and select **Todo0 Resource App** so this requesting app is authorized to access it via XAA. Leave the `todos.read` scope checked, then click **+ Add Connection**.
+
+Click **Register App** (or **Save changes**). The site will then display four values:
 
 - Notes App **Client ID**
 - Notes App **Client Secret**
