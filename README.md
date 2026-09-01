@@ -57,6 +57,21 @@ Click **Save changes**. The site will then display four values:
 
 Duplicate the `.env.example` file and rename it to `.env`.
 
+```sh
+# macOS/Linux
+cp .env.example .env
+```
+
+```powershell
+# Windows (PowerShell)
+Copy-Item .env.example .env
+```
+
+```bat
+:: Windows (Command Prompt)
+copy .env.example .env
+```
+
 Copy those four values into the matching `.env` variables — `CLIENT_ID`, `CLIENT_SECRET`, `RESOURCE_CLIENT_ID`, and `RESOURCE_CLIENT_SECRET`. Double check the defined URLs for the IdP, auth server, and todo resource server (`IDP_URL`, `AUTH_SERVER_URL`, `TODO_RESOURCE_SERVER`) match what's already in `.env.example`.
 
 > See ["Bring your own requestor app to the xaa.dev testing site"](https://developer.okta.com/blog/2026/02/10/xaa-client#bring-your-own-requestor-app-to-the-xaadev-testing-site) for the full walkthrough this section is based on.
