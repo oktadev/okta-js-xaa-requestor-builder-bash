@@ -30,54 +30,12 @@ npm ci
 
 ### Register a Client App in xaa.dev site
 
-[xaa.dev](https://xaa.dev) is an IdP-agnostic playground for testing Cross App Access — it's focused on the spec and education rather than any one company's product, so you don't need an IdP account or a conformant resource app OAuth server. You only need to supply this requestor app's client code.
-
-1. Navigate to [xaa.dev](https://xaa.dev) and optionally step through the sample flow to see how it works.
-2. Scroll to **"Ready to bring your own actors?"** and select:
-   - **Request App**
-   - **Register it with xaa.dev's IdP**
-   - **OIDC**
-3. Click **"Take me there."**
-4. Enter a made-up email to continue registration.
-5. You'll land on a pre-registered requesting app that needs a couple of updates. Click **Edit** and set:
-
-| Field | Value |
-|---|---|
-| Application Name | `Notes App` (or any name you like) |
-| Redirect URIs | `http://localhost:3000/auth/callback` |
-| Post-Logout Redirect URIs | `http://localhost:3000` |
-
-6. Under **Resource Connections**, use **Add Resource** and select **Todo0 Resource App** so this requesting app is authorized to access it via XAA. Leave the `todos.read` scope checked, then click **+ Add Connection**.
-
-7. Click **Register App** (or **Save changes**). 
-
-The site will then display four values:
-
-- Notes App **Client ID**
-- Notes App **Client Secret**
-- Resource **Client ID** (for the resource/to-do app's authorization server)
-- Resource **Client Secret**
+Register a client application that uses xaa.dev's Identity Provider (IdP) and resource app by following the instructions on the [Client Registration](https://xaa.dev/developer/register) page.
 
 Duplicate the `.env.example` file and rename it to `.env`.
 
-```sh
-# macOS/Linux
-cp .env.example .env
-```
-
-```powershell
-# Windows (PowerShell)
-Copy-Item .env.example .env
-```
-
-```bat
-:: Windows (Command Prompt)
-copy .env.example .env
-```
-
-Copy those four values into the matching `.env` variables — `CLIENT_ID`, `CLIENT_SECRET`, `RESOURCE_CLIENT_ID`, and `RESOURCE_CLIENT_SECRET`. Double check the defined URLs for the IdP, auth server, and todo resource server (`IDP_URL`, `AUTH_SERVER_URL`, `TODO_RESOURCE_SERVER`) match what's already in `.env.example`.
-
-> See ["Bring your own requestor app to the xaa.dev testing site"](https://developer.okta.com/blog/2026/02/10/xaa-client#bring-your-own-requestor-app-to-the-xaadev-testing-site) for the full walkthrough this section is based on.
+Save your `CLIENT_ID`, `CLIENT_SECRET`, `RESOURCE_CLIENT_ID`, and `RESOURCE_CLIENT_SECRET` as values within the `.env` file. 
+Double check that the defined URL for the IDP, auth server, and todo resource server.
 
 ### Using with GitHub Codespaces
 
