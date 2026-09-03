@@ -22,14 +22,25 @@ export class AuthController {
     private readonly configService: ConfigService,
   ) {}
 
+  private resolveRedirectUri(req: RequestWithSession): string {
+    const configured = this.configService.get<string>('REDIRECT_URI');
+    if (configured) {
+      return configured;
+    }
+
+    // Codespaces' forwarding proxy rewrites the Host header to
+    // localhost:<port> and puts the real public domain in
+    // X-Forwarded-Host instead, so that must take priority.
+    const host = req.get('x-forwarded-host') ?? req.get('host');
+    return `${req.protocol}://${host}/auth/callback`;
+  }
+
   @Get('login')
   async login(
     @Req() req: RequestWithSession,
     @Res() res: Response,
   ): Promise<void> {
-    const redirectUri =
-      this.configService.get<string>('REDIRECT_URI') ??
-      `${req.protocol}://${req.get('host')}/auth/callback`;
+    const redirectUri = this.resolveRedirectUri(req);
     const { authUrl, codeVerifier } =
       await this.authService.generateAuthUrl(redirectUri);
 
@@ -59,9 +70,7 @@ export class AuthController {
       throw new HttpException('Missing code verifier', HttpStatus.BAD_REQUEST);
     }
 
-    const redirectUri =
-      this.configService.get<string>('REDIRECT_URI') ??
-      `${req.protocol}://${req.get('host')}/auth/callback`;
+    const redirectUri = this.resolveRedirectUri(req);
     const queryString = req.url.split('?')[1] || '';
     const currentUrl = new URL(
       `${redirectUri}${queryString ? '?' + queryString : ''}`,
