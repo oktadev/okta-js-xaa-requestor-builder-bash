@@ -51,8 +51,8 @@ sequenceDiagram
 
    This outputs the Codespace's forwarded URL (e.g. `https://<codespace-name>-3000.app.github.dev`). Copy it — you'll need it in the next step.
 
-3. Register your app on [xaa.dev](https://xaa.dev) — it's an IdP-agnostic playground for testing Cross App Access, so you don't need an IdP account or a conformant resource app OAuth server.
-   - Scroll to **"Ready to bring your own actors?"**, select **Request App → Register it with xaa.dev's IdP → OIDC**, then click **"Take me there."**
+3. Register your app on [xaa.dev](https://xaa.dev/?have=requesting&want=register&via=oidc) — it's an IdP-agnostic playground for testing Cross App Access, so you don't need an IdP account or a conformant resource app OAuth server.
+   - Click **"Take me there."**
    - Enter a made-up email to continue registration.
    - You'll land on a pre-registered requesting app. Click **Edit** and set:
 
