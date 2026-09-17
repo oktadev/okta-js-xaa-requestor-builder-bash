@@ -10,7 +10,7 @@ This app runs entirely in a browser-based [GitHub Codespace](https://github.com/
 
 ---
 
-## Understanding the Cross-App Access flow
+## Understanding the Cross App Access flow
 
 XAA enables one app to securely access another app's resources on behalf of the same logged-in user, without additional consent prompts. This example logs each step to the console so you can watch the token exchange, Bearer token issuance, and resource fetch happen in real time:
 
