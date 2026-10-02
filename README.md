@@ -52,7 +52,7 @@ sequenceDiagram
    This outputs the Codespace's forwarded URL (e.g. `https://<codespace-name>-3000.app.github.dev`). Copy it — you'll need it in the next step.
 
 3. Register your app on [xaa.dev](https://xaa.dev/?have=requesting&want=register&via=oidc) — it's an IdP-agnostic playground for testing Cross App Access, so you don't need an IdP account or a conformant resource app OAuth server.
-   - Click **"Take me there."**
+   - On the landing page, select **Requesting App** and **Register it with xaa.dev's IdP**, then click **"Take me there."**
    - Enter a made-up email to continue registration.
    - You'll land on a pre-registered requesting app. Click **Edit** and set:
 
@@ -63,7 +63,7 @@ sequenceDiagram
      | Post-Logout Redirect URIs | `<forwarded-url>` |
 
    - Under **Resource Connections**, click **Add Resource**, select **Todo0 Resource App**, leave the `todos.read` scope checked, then click **+ Add Connection**.
-   - Click **Register App** (or **Save changes**). The site will then display four values: Notes App **Client ID**, Notes App **Client Secret**, Resource **Client ID**, and Resource **Client Secret** (for the resource/to-do app's authorization server).
+   - Click **Register App** (or **Save changes**). The site will then display four values: Notes App **Client ID**, Notes App **Client Secret**, and the **Resource Client ID** and **Resource Client Secret** for the **Todo0 Resource App**.
 
 4. Duplicate the `.env.example` file and rename it to `.env`, then paste in the four credentials from xaa.dev:
 
@@ -71,7 +71,7 @@ sequenceDiagram
    cp .env.example .env
    ```
 
-   Set `CLIENT_ID`, `CLIENT_SECRET`, `RESOURCE_CLIENT_ID`, and `RESOURCE_CLIENT_SECRET` to the values from xaa.dev. Double check the defined URLs for the IdP, auth server, and todo resource server (`IDP_URL`, `AUTH_SERVER_URL`, `TODO_RESOURCE_SERVER`) match what's already in `.env.example`. `REDIRECT_URI` is auto-detected from the forwarded Codespace URL, so you don't need to set it.
+   Set `CLIENT_ID` and `CLIENT_SECRET` to the Notes App credentials, and set `RESOURCE_CLIENT_ID` and `RESOURCE_CLIENT_SECRET` to the Todo0 Resource App credentials. Do not use the Todo0 MCP Server credentials. Double check the defined URLs for the IdP, auth server, and todo resource server (`IDP_URL`, `AUTH_SERVER_URL`, `TODO_RESOURCE_SERVER`) match what's already in `.env.example`. `REDIRECT_URI` is auto-detected from the forwarded Codespace URL, so you don't need to set it.
 
 5. Run the app:
 
